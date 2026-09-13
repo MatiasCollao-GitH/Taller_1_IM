@@ -1,13 +1,8 @@
 #include <iostream>
+using namespace std;
 
 int main() {
 
-    const auto lang = "C++";
-    std::cout << "Hello Nate Higgers" << lang << "!\n";
-
-    for (int i = 1; i <= 5; i++) {
-        std::cout << "i = " << i << std::endl;
-    }
 
     return 0;
 }
