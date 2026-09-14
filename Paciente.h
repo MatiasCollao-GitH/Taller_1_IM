@@ -5,7 +5,7 @@
 #ifndef TALLER_1_IM_PACIENTE_H
 #define TALLER_1_IM_PACIENTE_H
 #include "Persona.h"
-
+#pragma once
 
 class Paciente : public Persona {
 private:
@@ -18,7 +18,7 @@ public:
     void setServicio(std::string servicio);
     std::string getId();
     std::string getServicio();
-
+    void datos() override;
 
 
 };

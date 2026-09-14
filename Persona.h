@@ -5,7 +5,7 @@
 #ifndef TALLER_1_IM_PERSONA_H
 #define TALLER_1_IM_PERSONA_H
 #include <string>
-
+#pragma once
 
 class Persona {
 protected:

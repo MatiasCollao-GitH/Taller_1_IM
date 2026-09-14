@@ -21,6 +21,9 @@ void Paciente::setServicio(std::string servicio) {
 }
 
 Paciente::~Paciente() {
+}
+
+void Paciente::datos() {
     std::cout << "ID: " << this->id
               << " Nombre: " << this->nombre
               << " Edad: " << this->edad

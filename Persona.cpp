@@ -32,4 +32,6 @@ void Persona::datos() {
         << " Edad: " << this->edad << std::endl;
 }
 
+Persona::~Persona() {
+}
 

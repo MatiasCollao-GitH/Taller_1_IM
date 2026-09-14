@@ -1,8 +1,8 @@
 -Archivo->atención->derivacion->historial
 1(Listo)-Crear menú y base
 2(Creados Nodos y Cola, Falta pila)-Crear Lista Enlazada/Pila/Cola [Estandar]
-3-Crear Clases Persona-(Hereda a)>Pacientes/Servicio/Historial
-4-Carga de Pacientes [En Cola]
+3(Creados Clase Persona y Paciente, Falta Servicio e Historial)-Crear Clases Persona-(Hereda a)>Pacientes/Servicio/Historial
+4(Listo)-Carga de Pacientes [En Cola]
 4.5-Crear lizta enlazada de servicios [Cabeza = Hospital]
 5-Lectura de Cola->identificación de servicio->enviar a su
 servicio correspondiente [Enviar paciente a lista enlazada]->
