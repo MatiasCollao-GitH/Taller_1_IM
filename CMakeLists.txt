@@ -4,5 +4,5 @@ project(Taller_1_IM)
 set(CMAKE_CXX_STANDARD 20)
 
 add_executable(Taller_1_IM main.cpp
-        "estructuras de datos/Paciente.cpp"
-        "estructuras de datos/Paciente.h")
+        "dominio/Paciente.cpp"
+        "dominio/Paciente.h")
