@@ -4,7 +4,6 @@
 
 #ifndef TALLER_1_IM_SISTEMA_H
 #define TALLER_1_IM_SISTEMA_H
-#include <string>
 
 class Sistema {
 public:
