@@ -8,9 +8,7 @@ add_executable(Taller_1_IM main.cpp
         "estructuras de datos/Stack.h"
         Sistema.cpp
         Sistema.h
-        Nodo.cpp
         Nodo.h
-        Cola.cpp
         Cola.h
         Persona.cpp
         Persona.h

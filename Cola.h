@@ -28,5 +28,5 @@ public:
 };
 
 
-
+#include "Cola.cpp"
 #endif //TALLER_1_IM_COLA_H

@@ -6,22 +6,85 @@
 
 #include <fstream>
 #include <iostream>
+#include <sstream>
+
+#include "Nodo.h"
+#include "Paciente.h"
 using namespace std;
 
 void Sistema::iniciar() {
-    //leer();
+    this->colaEspera = new Cola<Paciente*>();
+    leer();
     menu();
 }
 
-/*
+//------------------------------------------------------------------------
+//Crear lista enlazada de los 8 posibles servicios
+bool Sistema::esServicioValido(std::string(servicio)) {
+    return false;
+}
+
+//Esto cambiar al hacer las listas enlazadas (revisar porque no se me ocurre aún cómo hacer que no se repita)
+bool Sistema::existePaciente(std::string id) {
+    return false;
+}
+
+//----------------------------------------------------------------------
 void Sistema::leer() {
-    ifstream archivo("pacientes.txt");
+    ifstream archivo("../Pacientes.txt");
     if (!archivo.is_open()) {
         cerr << "Error: No se pudo abrir el archivo pacientes.txt" << endl;
         return;
     }
+
+    string linea;
+    while (getline(archivo,linea)) {
+        if (linea.empty()) {
+            continue;
+        }
+
+        stringstream ss(linea);
+        string id, nombre, stringEdad, servicio;
+
+        if (getline(ss, id, ';')&&
+            getline(ss, nombre, ';') &&
+            getline(ss, stringEdad, ';') &&
+            getline(ss, servicio)) {
+
+            try {
+                int edad = stoi(stringEdad);
+
+                //(Estoy probando a ver si funciona la lectura base y la cola)
+
+                //Hacer lista con punteros para validar que el servicio sea uno de los 8
+                //(Ver si arreglar o poner todos los 8 servicios, este es prueba)
+                if (esServicioValido(servicio)) {
+                    cerr << "Error: Servicio invalido" << endl;
+                    continue;
+                }
+
+                //Validar que el paciente no esté duplicado por Id
+                if (existePaciente(id)) {
+                }
+
+                //Crear al paciente
+                Paciente* nuevo = new Paciente(id,nombre,edad,servicio);
+
+                //Meterlo a cola:
+                this->colaEspera->push(nuevo);
+
+                //En teoría funciona, pero no he imprimido la cola, (Tambien pendiente por hacer)
+
+
+            } catch (invalid_argument& e) {
+                cerr << "Error: Edad Formato" << endl;
+            }
+        } else {
+            cerr << "Error: Formato e linea invalido" << endl;
+        }
+    }
+    archivo.close();
 }
-*/
 
 void Sistema::menu() {
 
@@ -52,9 +115,9 @@ void Sistema::menu() {
         }
     }
 
-
 }
-
+Sistema::~Sistema() {
+}
 
 
 

@@ -27,5 +27,5 @@ public:
 };
 
 
-
+#include "Nodo.cpp"
 #endif //TALLER_1_IM_NODO_H
