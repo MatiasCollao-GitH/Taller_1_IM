@@ -9,4 +9,6 @@ add_executable(Taller_1_IM main.cpp
         "estructuras de datos/Node.h"
         "estructuras de datos/List.h"
         "estructuras de datos/Queue.h"
-        "estructuras de datos/Stack.h")
+        "estructuras de datos/Stack.h"
+        Sistema.cpp
+        Sistema.h)

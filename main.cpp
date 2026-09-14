@@ -1,8 +1,11 @@
 #include <iostream>
+
+
 using namespace std;
+#include "Sistema.h"
 
 int main() {
-
-    cout << "Testeo Final 2.1" << endl;
+    Sistema sistema;
+    sistema.iniciar();
     return 0;
 }
