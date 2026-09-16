@@ -5,23 +5,23 @@
 #ifndef TALLER_1_IM_SERVICIO_H
 #define TALLER_1_IM_SERVICIO_H
 
-#include "Cola.h"
+#include "Paciente.h"
+#include "Lista.h"
 
 
 class Servicio {
 private:
     std::string nombre;
-    Cola<Paciente*>* listaPacientes;
+    Lista<Paciente*>* listaPacientes;
 
 public:
-    Servicio(std::string &nombre);
-
+    Servicio(const std::string& nombre);
     ~Servicio();
 
-    std::string getNombre();
-    Cola<Paciente*>* getListaPacientes();
+    std::string getNombre() const;
+    Lista<Paciente*>* getListaPacientes();
+    void agregarPaciente(Paciente* p);
 };
-
 
 
 #endif //TALLER_1_IM_SERVICIO_H

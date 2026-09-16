@@ -7,11 +7,14 @@
 #include <string>
 
 #include "Cola.h"
+#include "Lista.h"
 #include "Paciente.h"
+#include "Servicio.h"
 
 class Sistema {
 private:
     Cola<Paciente*>* colaEspera;
+    Lista<Servicio*>* listaServicios;
 public:
     void iniciar();
 
@@ -22,12 +25,17 @@ public:
 
     ~Sistema();
 
+    void inicializarServicios();
+
     //Terminar
     bool esServicioValido(std::string(servicio));
     //------------------------------
 
     //tambien terminar
     bool existePaciente(std::string(id));
+
+
+
 };
 
 

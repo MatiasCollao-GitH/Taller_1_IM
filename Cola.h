@@ -28,6 +28,7 @@ public:
 
 
     void imprimir();
+    Nodo<T>* getInicio() const;
 };
 
 

@@ -16,4 +16,5 @@ add_executable(Taller_1_IM main.cpp
         Paciente.h
         Servicio.cpp
         Servicio.h
+        Lista.h
 )

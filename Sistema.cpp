@@ -10,28 +10,56 @@
 
 #include "Nodo.h"
 #include "Paciente.h"
+#include "Servicio.h"
 using namespace std;
 
 void Sistema::iniciar() {
     colaEspera = new Cola<Paciente*>();
+    inicializarServicios();
     leer();
     menu();
 }
 
-//------------------------------------------------------------------------
+void Sistema::inicializarServicios() {
+    this->listaServicios = new Lista<Servicio*>();
+
+    const std::string serviciosBase[8] = {
+        "Urgencias", "Medicina General", "Cardiologia", "Neurologia",
+        "Traumatologia", "Cirugia", "Pediatria", "Hospitalizacion"
+    };
+
+    for (int i = 0; i < 8; i++) {
+        this->listaServicios->agregarFinal(new Servicio(serviciosBase[i]));
+    }
+}
 
 
-//Crear lista enlazada de los 8 posibles servicios
-bool Sistema::esServicioValido(std::string(servicio)) {
+
+
+bool Sistema::esServicioValido(std::string servicio) {
+    Nodo<Servicio*>* actual = this->listaServicios->getCabeza();
+    while (actual != nullptr) {
+        if (actual->getValor()->getNombre() == servicio) {
+            return true;
+        }
+        actual = actual->getNext();
+    }
     return false;
 }
 
-//Esto cambiar al hacer las listas enlazadas (revisar porque no se me ocurre aún cómo hacer que no se repita)
 bool Sistema::existePaciente(std::string id) {
+    Nodo<Paciente*>* actual = this->colaEspera->getInicio();
+    while (actual != nullptr) {
+        Paciente* p = actual->getValor();
+        if (p != nullptr && p->getId() == id) {
+            return true;
+        }
+        actual = actual->getNext();
+    }
+
     return false;
 }
 
-//----------------------------------------------------------------------
 void Sistema::leer() {
     ifstream archivo("../Pacientes.txt");
     if (!archivo.is_open()) {
@@ -55,22 +83,18 @@ void Sistema::leer() {
 
             try {
                 int edad = stoi(stringEdad);
-                //Hacer lista con punteros para validar que el servicio sea uno de los 8
-                if (esServicioValido(servicio)) {
-                    cerr << "Error: Servicio invalido" << endl;
+                if (!esServicioValido(servicio)) {
+                    cerr << "Error: Servicio invalido (" << servicio << ")" << endl;
                     continue;
                 }
 
-                //Validar que el paciente no esté duplicado por Id
                 if (existePaciente(id)) {
-                    cerr << "Error: Servicio invalido" << endl;
+                    cerr << "Error: Paciente con ID duplicado (" << id << ")" << endl;
                     continue;
                 }
 
-                //Crear al paciente
                 Paciente* nuevo = new Paciente(id,nombre,edad,servicio);
 
-                //Meterlo a cola:
                 colaEspera->push(nuevo);
 
             } catch (invalid_argument& e) {
@@ -115,6 +139,16 @@ void Sistema::menu() {
 
 }
 Sistema::~Sistema() {
+    delete this->colaEspera;
+
+    if (this->listaServicios != nullptr) {
+        Nodo<Servicio*>* actual = this->listaServicios->getCabeza();
+        while (actual != nullptr) {
+            delete actual->getValor();
+            actual = actual->getNext();
+        }
+        delete this->listaServicios;
+    }
 }
 
 

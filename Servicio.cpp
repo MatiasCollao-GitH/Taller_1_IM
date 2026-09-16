@@ -4,19 +4,23 @@
 
 #include "Servicio.h"
 
-Servicio::Servicio(std::string &nombre) {
+Servicio::Servicio(const std::string& nombre) {
     this->nombre = nombre;
-    this->listaPacientes = new Cola<Paciente*>();
+    this->listaPacientes = new Lista<Paciente*>();
 }
 
 Servicio::~Servicio() {
     delete this->listaPacientes;
 }
 
-std::string Servicio::getNombre() {
+std::string Servicio::getNombre() const {
     return this->nombre;
 }
 
-Cola<Paciente *> *Servicio::getListaPacientes() {
+Lista<Paciente*>* Servicio::getListaPacientes() {
     return this->listaPacientes;
+}
+
+void Servicio::agregarPaciente(Paciente* p) {
+    this->listaPacientes->agregarFinal(p);
 }

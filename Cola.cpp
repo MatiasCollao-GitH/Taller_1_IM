@@ -86,9 +86,15 @@ void Cola<T>::imprimir() {
     }
 }
 
+template<class T>
+Nodo<T> *Cola<T>::getInicio() const {
+    return this->inicio;
+}
 
 
-
+template<class T>
+Cola<T>::~Cola() {
+}
 
 
 
