@@ -19,12 +19,15 @@ public:
     Cola();
     int size();
     void push(T valor);
+
     T front();
     T back();
     void pop();
     bool isEmpty();
     ~Cola();
 
+
+    void imprimir();
 };
 
 

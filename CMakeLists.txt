@@ -13,4 +13,7 @@ add_executable(Taller_1_IM main.cpp
         Persona.cpp
         Persona.h
         Paciente.cpp
-        Paciente.h)
+        Paciente.h
+        Servicio.cpp
+        Servicio.h
+)

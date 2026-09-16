@@ -14,6 +14,9 @@ private:
     Cola<Paciente*>* colaEspera;
 public:
     void iniciar();
+
+    void imprimirColaSINEliminar(Nodo<Paciente *> *cola);
+
     void leer();
     void menu();
 

@@ -3,6 +3,11 @@
 //
 
 #include "Cola.h"
+#include "Cola.h"
+
+#include <iostream>
+
+#include "Paciente.h"
 
 template<class T>
 Cola<T>::Cola() {
@@ -66,3 +71,30 @@ template<class T>
 bool Cola<T>::isEmpty() {
     return this->vacio;
 }
+
+template<class T>
+void Cola<T>::imprimir() {
+    Nodo<T>* actual = this->inicio;
+
+    while (actual != nullptr) {
+        T paciente = actual->getValor();
+
+        if (paciente != nullptr) {
+            paciente->datos();
+        }
+        actual = actual->getNext();
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

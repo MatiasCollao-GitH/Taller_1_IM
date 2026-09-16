@@ -10,7 +10,7 @@ T Nodo<T>::getValor() {
 }
 
 template<class T>
-T Nodo<T>::getNext() {
+Nodo<T> *Nodo<T>::getNext() {
     return this->next;
 }
 

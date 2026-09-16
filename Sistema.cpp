@@ -13,12 +13,14 @@
 using namespace std;
 
 void Sistema::iniciar() {
-    this->colaEspera = new Cola<Paciente*>();
+    colaEspera = new Cola<Paciente*>();
     leer();
     menu();
 }
 
 //------------------------------------------------------------------------
+
+
 //Crear lista enlazada de los 8 posibles servicios
 bool Sistema::esServicioValido(std::string(servicio)) {
     return false;
@@ -53,11 +55,7 @@ void Sistema::leer() {
 
             try {
                 int edad = stoi(stringEdad);
-
-                //(Estoy probando a ver si funciona la lectura base y la cola)
-
                 //Hacer lista con punteros para validar que el servicio sea uno de los 8
-                //(Ver si arreglar o poner todos los 8 servicios, este es prueba)
                 if (esServicioValido(servicio)) {
                     cerr << "Error: Servicio invalido" << endl;
                     continue;
@@ -65,16 +63,15 @@ void Sistema::leer() {
 
                 //Validar que el paciente no esté duplicado por Id
                 if (existePaciente(id)) {
+                    cerr << "Error: Servicio invalido" << endl;
+                    continue;
                 }
 
                 //Crear al paciente
                 Paciente* nuevo = new Paciente(id,nombre,edad,servicio);
 
                 //Meterlo a cola:
-                this->colaEspera->push(nuevo);
-
-                //En teoría funciona, pero no he imprimido la cola, (Tambien pendiente por hacer)
-
+                colaEspera->push(nuevo);
 
             } catch (invalid_argument& e) {
                 cerr << "Error: Edad Formato" << endl;
@@ -83,6 +80,7 @@ void Sistema::leer() {
             cerr << "Error: Formato e linea invalido" << endl;
         }
     }
+    //colaEspera->imprimir();//La wea más Complicada y Simple de hacer solo para comprobar que el guardado funciona
     archivo.close();
 }
 

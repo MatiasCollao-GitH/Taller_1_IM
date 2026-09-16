@@ -18,7 +18,7 @@ public:
         this->next = nullptr;
     }
     T getValor();
-    T getNext();
+    Nodo<T>* getNext();
 
     void setValor(T valor);
     void setNext(Nodo<T>* next);
