@@ -24,9 +24,11 @@ public:
 
     void leer();
     void menu();
-    void revisarHistorial();
 
+    void revisarHistorial();
+    void verDepartamento();
     void atenderPacientes();
+
     Servicio* buscarServicio(std::string nombre);
 
     ~Sistema();

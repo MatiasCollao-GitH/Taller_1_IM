@@ -182,6 +182,75 @@ void Sistema::atenderPacientes() {
     }
 }
 
+void Sistema::verDepartamento() {
+
+    cout << "\n=== DEPARTAMENTOS ===" << endl;
+
+    Nodo<Servicio*>* actual = this->listaServicios->getCabeza();
+
+    int numero = 1;
+
+    while (actual != nullptr) {
+        cout << numero << ". "
+             << actual->getValor()->getNombre()
+             << endl;
+
+        actual = actual->getNext();
+        numero++;
+    }
+    int opcion;
+
+    cout << "\nSeleccione departamento: ";
+    cin >> opcion;
+
+    if (cin.fail()) {
+        cout << "Opcion invalida" << endl;
+
+        cin.clear();
+        cin.ignore(10000, '\n');
+
+        return;
+    }
+
+    //Ver si existe el departamento
+    if (opcion < 1 || opcion > this->listaServicios->getTamano()) {
+        cout << "Departamento invalido" << endl;
+        return;
+    }
+
+    actual = this->listaServicios->getCabeza();
+
+    //Avanzamos hasta el departamento elegido
+    for (int i = 1; i < opcion; i++) {
+        actual = actual->getNext();
+    }
+    Servicio* servicio = actual->getValor();
+
+    cout << "\n=== " << servicio->getNombre() << " ===" << endl;
+
+    Lista<Paciente*>* pacientes = servicio->getListaPacientes();
+
+    //Ver si el departamento tiene pacientes
+    if (pacientes->isEmpty()) {
+        cout << "No hay pacientes en este departamento" << endl;
+        return;
+    }
+
+    Nodo<Paciente*>* pacienteActual = pacientes->getCabeza();
+
+    while (pacienteActual != nullptr) {
+        Paciente* paciente = pacienteActual->getValor();
+
+        if (paciente != nullptr) {
+            paciente->datos();
+        }
+        pacienteActual = pacienteActual->getNext();
+
+    }
+
+
+}
+
 void Sistema::menu() {
 
     int opcion = 0;
@@ -202,7 +271,7 @@ void Sistema::menu() {
         }else if (opcion == 1) {
             atenderPacientes();
         } else if (opcion == 2) {
-            //verDepartamento();
+            verDepartamento();
         } else if (opcion == 3) {
             revisarHistorial();
         } else if (opcion == 4) {
