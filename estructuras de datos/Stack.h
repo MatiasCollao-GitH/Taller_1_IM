@@ -1,13 +1,13 @@
 
 #pragma once
 
-#include "Node.h"
+#include "../Nodo.h"
 template <class T>
 
 class Stack {
 
     private:
-    Node<T>* start;
+    Nodo<T>* start;
     int sizeStack;
 
 
@@ -20,7 +20,7 @@ class Stack {
 
     //Insertar al inicio de la pila
     void push(T value) {
-        Node<T>* nuevo = new Node<T>(value);
+        Nodo<T>* nuevo = new Nodo<T>(value);
 
         nuevo->setNext(this->start);
         this->start = nuevo;
@@ -33,7 +33,7 @@ class Stack {
         if (this->start == nullptr) {
             throw 0;
         }
-        Node<T>* eliminar = this->start;
+        Nodo<T>* eliminar = this->start;
         this->start = this->start->getNext();
 
         delete eliminar;
@@ -44,7 +44,7 @@ class Stack {
         if (this->start == nullptr) {
             throw 0;
         }
-        return this->start->getValue();
+        return this->start->getValor();
     }
 
     //Comprobar si está vacía
@@ -57,10 +57,16 @@ class Stack {
         return this->sizeStack;
     }
 
+
+
+    Nodo<T>* getHead() {
+        return this->start;
+    }
+
     //Destructor
     ~Stack() {
         while (this->start != nullptr) {
-            Node<T>* eliminar = this->start;
+            Nodo<T>* eliminar = this->start;
 
             this->start = this->start->getNext();
             delete eliminar;

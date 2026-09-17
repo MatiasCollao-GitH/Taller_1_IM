@@ -10,11 +10,13 @@
 #include "Lista.h"
 #include "Paciente.h"
 #include "Servicio.h"
+#include "Historial.h"
 
 class Sistema {
 private:
     Cola<Paciente*>* colaEspera;
     Lista<Servicio*>* listaServicios;
+    Historial* historial;
 public:
     void iniciar();
 
@@ -22,6 +24,10 @@ public:
 
     void leer();
     void menu();
+    void revisarHistorial();
+
+    void atenderPacientes();
+    Servicio* buscarServicio(std::string nombre);
 
     ~Sistema();
 

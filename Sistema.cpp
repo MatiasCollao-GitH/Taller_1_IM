@@ -15,6 +15,8 @@ using namespace std;
 
 void Sistema::iniciar() {
     colaEspera = new Cola<Paciente*>();
+    this->historial = new Historial();
+
     inicializarServicios();
     leer();
     menu();
@@ -45,6 +47,22 @@ bool Sistema::esServicioValido(std::string servicio) {
         actual = actual->getNext();
     }
     return false;
+}
+
+Servicio* Sistema::buscarServicio(std::string nombre) {
+
+    Nodo<Servicio*>* actual = this->listaServicios->getCabeza();
+
+    while (actual != nullptr) {
+
+        Servicio*  servicio = actual->getValor();
+
+        if (servicio->getNombre() == nombre) {
+            return servicio;
+        }
+        actual = actual->getNext();
+    }
+    return nullptr;
 }
 
 bool Sistema::existePaciente(std::string id) {
@@ -104,8 +122,64 @@ void Sistema::leer() {
             cerr << "Error: Formato e linea invalido" << endl;
         }
     }
-    //colaEspera->imprimir();//La wea más Complicada y Simple de hacer solo para comprobar que el guardado funciona
+    //colaEspera->imprimir();// Complicado y Simple de hacer solo para comprobar que el guardado funciona
     archivo.close();
+}
+
+void Sistema::revisarHistorial() {
+    this->historial->mostrarHistorial();
+}
+
+void Sistema::atenderPacientes() {
+    if (this->colaEspera->size() == 0) {
+        cout << "No hay pacientes en espera." << endl;
+        return;
+    }
+    int cantidad;
+
+    cout << "Cantidad de pacientes a atender: ";
+    cin >> cantidad;
+
+    //Validar cantidad
+    if (cin.fail() || cantidad <= 0) {
+        cout << "Cantidad invalida" << endl;
+
+        cin.clear();
+        cin.ignore(10000, '\n');
+
+        return;
+    }
+    for (int i = 0; i < cantidad; i++) {
+
+        //Si se acabaron los pacientes antes de llegar a la cantidad
+        if (this->colaEspera->size() == 0) {
+            cout << "No quedan más pacientes en espera" << endl;
+            break;
+        }
+        //Obtenemos el paciente del frente de la cola
+        Paciente* paciente = this->colaEspera->front();
+
+        //Buscamos el servicio que corresponda
+        Servicio* servicio = buscarServicio(paciente->getServicio());
+
+        if (servicio == nullptr) {
+            cout << "Error: No se encontró el servicio del paciente." << endl;
+            break;
+        }
+
+        //Enviamos al paciente al servicio
+        servicio->agregarPaciente(paciente);
+
+        //Registramos atención en el hospital
+        this->historial->registrarAtencion(paciente);
+
+        //Lo eliminamos de la cola de espera
+        this->colaEspera->pop();
+
+        cout << "Paciente atendido: ";
+        paciente->datos();
+
+    }
 }
 
 void Sistema::menu() {
@@ -126,11 +200,11 @@ void Sistema::menu() {
         cin.clear();
         cin.ignore(10000, '\n');
         }else if (opcion == 1) {
-            //atenderPacientes();
+            atenderPacientes();
         } else if (opcion == 2) {
             //verDepartamento();
         } else if (opcion == 3) {
-            //revisarHistorial();
+            revisarHistorial();
         } else if (opcion == 4) {
             cout << "Hasta luego :D." << endl;
             break;
@@ -140,6 +214,7 @@ void Sistema::menu() {
 }
 Sistema::~Sistema() {
     delete this->colaEspera;
+    delete this->historial;
 
     if (this->listaServicios != nullptr) {
         Nodo<Servicio*>* actual = this->listaServicios->getCabeza();

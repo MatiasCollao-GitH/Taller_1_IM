@@ -17,4 +17,6 @@ add_executable(Taller_1_IM main.cpp
         Servicio.cpp
         Servicio.h
         Lista.h
+        Historial.cpp
+        Historial.h
 )
