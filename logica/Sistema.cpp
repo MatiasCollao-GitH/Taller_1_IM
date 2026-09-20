@@ -142,7 +142,7 @@ void Sistema::atenderPacientes() {
 
     cout << "Cantidad de pacientes a atender: ";
     cin >> cantidad;
-    "\n";
+    cout << endl;
 
     //Validar cantidad
     if (cin.fail() || cantidad <= 0) {
