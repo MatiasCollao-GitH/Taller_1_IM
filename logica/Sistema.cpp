@@ -80,7 +80,7 @@ bool Sistema::existePaciente(std::string id) {
 }
 
 void Sistema::leer() {
-    ifstream archivo("Pacientes.txt");
+    ifstream archivo("pacientes.txt");
     if (!archivo.is_open()) {
         cerr << "Error: No se pudo abrir el archivo pacientes.txt" << endl;
         return;
