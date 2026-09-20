@@ -10,7 +10,14 @@ Servicio::Servicio(const std::string& nombre) {
 }
 
 Servicio::~Servicio() {
-    delete this->listaPacientes;
+    if (this->listaPacientes != nullptr) {
+        Nodo<Paciente*>* actual = this->listaPacientes->getCabeza();
+        while (actual != nullptr) {
+            delete actual->getValor();
+            actual = actual->getNext();
+        }
+        delete this->listaPacientes;
+    }
 }
 
 std::string Servicio::getNombre() const {

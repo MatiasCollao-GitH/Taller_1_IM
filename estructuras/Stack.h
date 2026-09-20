@@ -1,7 +1,7 @@
 
 #pragma once
 
-#include "../Nodo.h"
+#include "Nodo.h"
 template <class T>
 
 class Stack {

@@ -24,9 +24,6 @@ Paciente::~Paciente() {
 }
 
 void Paciente::datos() {
-    std::cout << "ID: " << this->id
-              << " Nombre: " << this->nombre
-              << " Edad: " << this->edad
-              << " Servicio: " << this->servicio << std::endl;
+    std::cout << this->id << " - " << this->nombre << " - " << this->edad << " - " << this->servicio <<  std::endl;
 }
 

@@ -6,11 +6,11 @@
 #define TALLER_1_IM_SISTEMA_H
 #include <string>
 
-#include "Cola.h"
-#include "Lista.h"
-#include "Paciente.h"
-#include "Servicio.h"
-#include "Historial.h"
+#include "estructuras/Cola.h"
+#include "estructuras/Lista.h"
+#include "dominio/Paciente.h"
+#include "dominio/Servicio.h"
+#include "dominio/Historial.h"
 
 class Sistema {
 private:

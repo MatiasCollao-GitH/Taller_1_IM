@@ -3,11 +3,10 @@
 //
 
 #include "Cola.h"
-#include "Cola.h"
 
 #include <iostream>
 
-#include "Paciente.h"
+#include "../dominio/Paciente.h"
 
 template<class T>
 Cola<T>::Cola() {
@@ -69,21 +68,26 @@ void Cola<T>::pop() {
 
 template<class T>
 bool Cola<T>::isEmpty() {
-    return this->vacio;
+    return this->inicio == nullptr;
 }
 
 template<class T>
 void Cola<T>::imprimir() {
     Nodo<T>* actual = this->inicio;
 
+    std::cout << "=== PACIENTES EN ESPERA ===" << std::endl;
+
+    int cont = 1;
     while (actual != nullptr) {
         T paciente = actual->getValor();
 
         if (paciente != nullptr) {
-            paciente->datos();
+            std::cout << cont << ". " << paciente->getId() << " - " << paciente->getNombre() << std::endl;
         }
         actual = actual->getNext();
+        cont++;
     }
+    std::cout << std::endl;
 }
 
 template<class T>
@@ -94,6 +98,9 @@ Nodo<T> *Cola<T>::getInicio() const {
 
 template<class T>
 Cola<T>::~Cola() {
+    while (!this->isEmpty()) {
+        this->pop();
+    }
 }
 
 

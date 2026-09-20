@@ -8,9 +8,9 @@
 #include <iostream>
 #include <sstream>
 
-#include "Nodo.h"
-#include "Paciente.h"
-#include "Servicio.h"
+#include "estructuras/Nodo.h"
+#include "dominio/Paciente.h"
+#include "dominio/Servicio.h"
 using namespace std;
 
 void Sistema::iniciar() {
@@ -30,8 +30,9 @@ void Sistema::inicializarServicios() {
         "Traumatologia", "Cirugia", "Pediatria", "Hospitalizacion"
     };
 
-    for (int i = 0; i < 8; i++) {
-        this->listaServicios->agregarFinal(new Servicio(serviciosBase[i]));
+    const std::string* ptr = serviciosBase;
+    for (int i = 0; i < 8; ++i) {
+        this->listaServicios->agregarFinal(new Servicio(*(ptr + i)));
     }
 }
 
@@ -137,8 +138,11 @@ void Sistema::atenderPacientes() {
     }
     int cantidad;
 
+    this->colaEspera->imprimir();
+
     cout << "Cantidad de pacientes a atender: ";
     cin >> cantidad;
+    "\n";
 
     //Validar cantidad
     if (cin.fail() || cantidad <= 0) {
@@ -167,6 +171,8 @@ void Sistema::atenderPacientes() {
             break;
         }
 
+        cout << "=== ATENDIENDO PACIENTES ===" << endl;
+
         //Enviamos al paciente al servicio
         servicio->agregarPaciente(paciente);
 
@@ -176,15 +182,16 @@ void Sistema::atenderPacientes() {
         //Lo eliminamos de la cola de espera
         this->colaEspera->pop();
 
-        cout << "Paciente atendido: ";
-        paciente->datos();
+        cout << "ID: " << paciente->getId() << "\nNombre: " << paciente->getNombre() << "\nEdad: " <<
+            paciente->getEdad() << "\nServicio: " << paciente->getServicio() << "\n" << endl;
 
+        cout << "Paciente enviado a " << paciente->getServicio() << ".\n" << endl;
     }
 }
 
 void Sistema::verDepartamento() {
 
-    cout << "\n=== DEPARTAMENTOS ===" << endl;
+    cout << "=== DEPARTAMENTOS/SERVICIOS ===" << endl;
 
     Nodo<Servicio*>* actual = this->listaServicios->getCabeza();
 
@@ -226,7 +233,7 @@ void Sistema::verDepartamento() {
     }
     Servicio* servicio = actual->getValor();
 
-    cout << "\n=== " << servicio->getNombre() << " ===" << endl;
+    cout << "\n=== ESTADO " << servicio->getNombre() << " ===" << endl;
 
     Lista<Paciente*>* pacientes = servicio->getListaPacientes();
 
@@ -235,6 +242,8 @@ void Sistema::verDepartamento() {
         cout << "No hay pacientes en este departamento" << endl;
         return;
     }
+    cout << "Pacientes en el departamento de " << servicio->getNombre() << " : " << servicio->getListaPacientes()->getTamano() << endl;
+
 
     Nodo<Paciente*>* pacienteActual = pacientes->getCabeza();
 
@@ -242,11 +251,12 @@ void Sistema::verDepartamento() {
         Paciente* paciente = pacienteActual->getValor();
 
         if (paciente != nullptr) {
-            paciente->datos();
+            cout << paciente->getNombre() << "(" << paciente->getEdad() << ")" << endl;
         }
         pacienteActual = pacienteActual->getNext();
 
     }
+    cout << endl;
 
 
 }

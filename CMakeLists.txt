@@ -4,19 +4,18 @@ project(Taller_1_IM)
 set(CMAKE_CXX_STANDARD 20)
 
 add_executable(Taller_1_IM main.cpp
-        "estructuras de datos/List.h"
-        "estructuras de datos/Stack.h"
+        estructuras/Stack.h
         Sistema.cpp
         Sistema.h
-        Nodo.h
-        Cola.h
-        Persona.cpp
-        Persona.h
-        Paciente.cpp
-        Paciente.h
-        Servicio.cpp
-        Servicio.h
-        Lista.h
-        Historial.cpp
-        Historial.h
+        estructuras/Nodo.h
+        estructuras/Cola.h
+        dominio/Persona.cpp
+        dominio/Persona.h
+        dominio/Paciente.cpp
+        dominio/Paciente.h
+        dominio/Servicio.cpp
+        dominio/Servicio.h
+        estructuras/Lista.h
+        dominio/Historial.cpp
+        dominio/Historial.h
 )

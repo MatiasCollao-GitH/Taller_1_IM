@@ -21,14 +21,18 @@ void Historial::mostrarHistorial() {
     }
     Nodo<Paciente*>* nodo = this->pilaAtenciones->getHead();
 
+    std::cout << "=== HISTORIAL DE ÚLTIMAS ATENCIONES DEL HOSPITAL ===" << std::endl;
+
     while (nodo != nullptr) {
         Paciente* paciente = nodo->getValor();
 
         if (paciente != nullptr) {
-            paciente->datos();
+            std::cout << "Nombre: " << paciente->getNombre() << " | Edad: " << paciente->getEdad() <<
+                " | Departamento: " << paciente->getServicio() << std::endl;
         }
         nodo = nodo->getNext();
     }
+    "\n";
 }
 
 Historial::~Historial() {

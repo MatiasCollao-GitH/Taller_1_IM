@@ -6,7 +6,7 @@
 #define TALLER_1_IM_SERVICIO_H
 
 #include "Paciente.h"
-#include "Lista.h"
+#include "../estructuras/Lista.h"
 
 
 class Servicio {

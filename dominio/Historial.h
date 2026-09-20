@@ -2,8 +2,7 @@
 #define TALLER_1_IM_HISTORIAL_H
 
 #include "Paciente.h"
-#include "Nodo.h"
-#include "estructuras de datos/Stack.h"
+#include "../estructuras/Stack.h"
 
 class Historial {
 
