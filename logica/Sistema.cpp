@@ -8,9 +8,9 @@
 #include <iostream>
 #include <sstream>
 
-#include "estructuras/Nodo.h"
-#include "dominio/Paciente.h"
-#include "dominio/Servicio.h"
+#include "../estructuras/Nodo.h"
+#include "../dominio/Paciente.h"
+#include "../dominio/Servicio.h"
 using namespace std;
 
 void Sistema::iniciar() {

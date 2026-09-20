@@ -2,7 +2,7 @@
 
 
 using namespace std;
-#include "Sistema.h"
+#include "logica/Sistema.h"
 
 int main() {
     Sistema sistema;

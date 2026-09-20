@@ -5,8 +5,8 @@ set(CMAKE_CXX_STANDARD 20)
 
 add_executable(Taller_1_IM main.cpp
         estructuras/Stack.h
-        Sistema.cpp
-        Sistema.h
+        logica/Sistema.cpp
+        logica/Sistema.h
         estructuras/Nodo.h
         estructuras/Cola.h
         dominio/Persona.cpp
