@@ -32,7 +32,6 @@ void Historial::mostrarHistorial() {
         }
         nodo = nodo->getNext();
     }
-    "\n";
 }
 
 Historial::~Historial() {
