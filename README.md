@@ -83,7 +83,7 @@ El proyecto prescinde estrictamente de contenedores de la STL (`std::vector`, `s
 1. Abrir una terminal en el directorio raíz del proyecto.
 2. Compilar todos los archivos fuente con soporte de C++17:
    ```bash
-   g++ -std=c++17 -Wall main.cpp Sistema.cpp dominio/Persona.cpp dominio/Paciente.cpp dominio/Servicio.cpp dominio/Historial.cpp -o hospital
+   g++ -std=c++17 -Wall main.cpp logica/Sistema.cpp dominio/Persona.cpp dominio/Paciente.cpp dominio/Servicio.cpp dominio/Historial.cpp -o hospital
    ```
 3. Ejecutar el binario generado:
    * En Linux, macOS o GitHub Codespaces:
