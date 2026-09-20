@@ -15,7 +15,7 @@ Sistema en C++ para la administración del flujo hospitalario de pacientes media
 El proyecto prescinde estrictamente de contenedores de la STL (`std::vector`, `std::list`, `std::queue`, `std::stack`). Todas las estructuras lineales fueron implementadas desde cero mediante clases nodales enlazadas y memoria dinámica:
 
 1. **Cola de Espera (`Cola<T>` - FIFO):**
-   * Gestiona el orden de llegada de los pacientes leídos desde `Pacientes.txt`.
+   * Gestiona el orden de llegada de los pacientes leídos desde `pacientes.txt`.
    * Implementa las operaciones clásicas de encolar al final (`push`) y desencolar desde el frente (`pop`), garantizando la disciplina First-In, First-Out.
 
 2. **Lista Enlazada Multinivel (`Lista<T>`):**
@@ -76,7 +76,7 @@ El proyecto prescinde estrictamente de contenedores de la STL (`std::vector`, `s
 
 ## Instrucciones de Compilación y Ejecución
 
-> **Importante:** El archivo `Pacientes.txt` debe ubicarse en el mismo directorio donde se ejecute el binario compilado para permitir su lectura.
+> **Importante:** El archivo `pacientes.txt` debe ubicarse en el mismo directorio donde se ejecute el binario compilado para permitir su lectura.
 
 ### Opción 1: Compilación manual con G++ (Recomendada para GitHub Codespaces / Terminal Linux)
 
@@ -112,12 +112,12 @@ El proyecto prescinde estrictamente de contenedores de la STL (`std::vector`, `s
 3. Copiar el archivo de datos al directorio de ejecución:
    * En Linux / macOS / Codespaces:
      ```bash
-     cp ../Pacientes.txt .
+     cp pacientes.txt .
      ./Taller_1_IM
      ```
    * En Windows:
      ```cmd
-     copy ..\Pacientes.txt .
+     copy pacientes.txt .
      Taller_1_IM.exe
      ```
 
@@ -125,7 +125,7 @@ El proyecto prescinde estrictamente de contenedores de la STL (`std::vector`, `s
 
 ## Manejo de Casos Borde y Validaciones
 
-* **Control de Archivo:** Validación previa de apertura de `Pacientes.txt`; si no existe o la ruta es inválida, se emite un mensaje descriptivo y se evita la caída del sistema.
+* **Control de Archivo:** Validación previa de apertura de `pacientes.txt`; si no existe o la ruta es inválida, se emite un mensaje descriptivo y se evita la caída del sistema.
 * **Formato de Líneas y Tipos:** Descarte de registros incompletos o con edades no numéricas mediante control de excepciones (`std::invalid_argument`).
 * **Servicios Inválidos:** Verificación frente a los 8 departamentos permitidos; si el servicio solicitado no pertenece al catálogo hospitalario, la línea se rechaza.
 * **Pacientes Duplicados:** Validación de identificador único (`id`); si un paciente ya está en cola, el duplicado es descartado.
